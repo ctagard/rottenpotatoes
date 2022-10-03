@@ -2505,3 +2505,24 @@ Processing by MoviesController#index as HTML
   Rendered movies/index.html.erb within layouts/application (2.6ms)
   Rendered layouts/_flash.erb (0.1ms)
 Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/movies?sorting=date" for 135.180.198.210 at 2022-10-03 20:59:45 +0000
+Cannot render console from 135.180.198.210! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MoviesController#index as HTML
+  Parameters: {"sorting"=>"date"}
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG')  ORDER BY release_date
+  Rendered movies/index.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_flash.erb (0.4ms)
+Completed 200 OK in 273ms (Views: 260.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/movies?sorting=title" for 135.180.198.210 at 2022-10-03 20:59:49 +0000
+Cannot render console from 135.180.198.210! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MoviesController#index as HTML
+  Parameters: {"sorting"=>"title"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG')  ORDER BY title[0m
+  Rendered movies/index.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.3ms)
