@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
     def show
       id = params[:id] # retrieve movie ID from URI route
       @movie = Movie.find(id) # look up movie by unique ID
@@ -7,7 +6,24 @@ class MoviesController < ApplicationController
     end
   
     def index
+       
+      @all_ratings = Movie.all_ratings
+      if params[:ratings]
+        @ratings_to_show = params[:ratings].keys 
+        session[:ratings_to_show] = @ratings_to_show 
+      end 
+      if session[:ratings_to_show] && params[:ratings].nil?
+        @ratings_to_show = session[:ratings_to_show] 
+        flash.keep 
+      end 
+      if session[:ratings_to_show].nil? && params[:ratings].nil? 
+        @ratings_to_show = @all_ratings
+      end
       @movies = Movie.all
+      if session[:ratings_to_show] 
+        @movies = Movie.with_ratings(session[:ratings_to_show])
+        @ratings_to_show = session[:ratings_to_show]
+      end 
     end
   
     def new
