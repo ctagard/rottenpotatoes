@@ -12,10 +12,10 @@ class Movie < ActiveRecord::Base
     end
     self.where(rating: ratings_list)
   end
-  def self.title_sort 
-    self.order('title')
+  def self.title_sort(movies)
+    movies.order('title')
   end
-  def self.date_sort 
-    self.order('release_date') 
+  def self.date_sort(movies)
+    movies.order('release_date') 
   end 
 end
