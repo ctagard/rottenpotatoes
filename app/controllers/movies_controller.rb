@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
 
       # If there is no sorting, and no rating filters, show the ratings stored in session
       #    with sorting stored in session. 
-      if session[:sorting].nil? && session[:ratings_to_show] && params[:ratings].nil?
+      if params[:sorting].nil? && session[:ratings_to_show] && params[:ratings].nil?
         @ratings_to_show = session[:ratings_to_show] 
         @sorting = session[:sorting]
         flash.keep 
